@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Create New Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Функция для управления видимостью полей на основе состояния чекбоксов
+        function toggleField(fieldId, checkbox) {
+            var field = document.getElementById(fieldId);
+            field.style.display = checkbox.checked ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Create New Report</h2>
+            <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+        </div>
+        <form method="POST">
+            <!-- Название отчета -->
+            <input type="text" name="title" placeholder="Report Title" required><br>
+            
+            <!-- Описание -->
+            <textarea name="description" placeholder="Description" required></textarea><br>
+
+            <!-- Ключевые поля с чекбоксами для включения/отключения -->
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" onclick="toggleField('steps_field', this)" checked>
+                    Steps to Reproduce
+                </label>
+            </div>
+            <div id="steps_field">
+                <textarea name="steps" placeholder="Steps to Reproduce"></textarea><br>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" onclick="toggleField('expected_result_field', this)" checked>
+                    Expected Result
+                </label>
+            </div>
+            <div id="expected_result_field">
+                <textarea name="expected_result" placeholder="Expected Result"></textarea><br>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" onclick="toggleField('actual_result_field', this)" checked>
+                    Actual Result
+                </label>
+            </div>
+            <div id="actual_result_field">
+                <textarea name="actual_result" placeholder="Actual Result"></textarea><br>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" onclick="toggleField('priority_field', this)" checked>
+                    Priority
+                </label>
+            </div>
+            <div id="priority_field">
+                <select name="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select><br>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" onclick="toggleField('assigned_field', this)" checked>
+                    Assigned To
+                </label>
+            </div>
+            <div id="assigned_field">
+                <input type="text" name="assigned" placeholder="Assigned To"><br>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" onclick="toggleField('status_field', this)" checked>
+                    Status
+                </label>
+            </div>
+            <div id="status_field">
+                <select name="status">
+                    <option value="open">Open</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                </select><br>
+            </div>
+
+            <!-- Кнопка создания отчета -->
+            <button type="submit">Create Report</button>
+        </form>
+    </div>
+</body>
+</html>

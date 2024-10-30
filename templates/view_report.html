@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>View Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Report Details</h2>
+            <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+        </div>
+
+        <div class="report-details">
+            <h3>{{ report.title }}</h3>
+            <p><strong>Date Created:</strong> {{ report.date_posted.strftime('%Y-%m-%d') }}</p>
+
+            <p><strong>Description:</strong> {{ report.description }}</p>
+            
+            {% if report.steps %}
+                <p><strong>Steps to Reproduce:</strong> {{ report.steps }}</p>
+            {% endif %}
+            {% if report.expected_result %}
+                <p><strong>Expected Result:</strong> {{ report.expected_result }}</p>
+            {% endif %}
+            {% if report.actual_result %}
+                <p><strong>Actual Result:</strong> {{ report.actual_result }}</p>
+            {% endif %}
+            {% if report.priority %}
+                <p><strong>Priority:</strong> {{ report.priority | capitalize }}</p>
+            {% endif %}
+            {% if report.assigned %}
+                <p><strong>Assigned To:</strong> {{ report.assigned }}</p>
+            {% endif %}
+            {% if report.status %}
+                <p><strong>Status:</strong> {{ report.status | capitalize }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

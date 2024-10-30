@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Dashboard</h2>
+            <div class="links">
+                <a href="{{ url_for('new_report') }}">Create New Report</a> |
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+        <h3>Your Reports:</h3>
+        <ul class="report-list">
+            {% for report in reports %}
+                <li>
+                    <a href="{{ url_for('view_report', report_id=report.id) }}">{{ report.title }} - {{ report.date_posted.strftime('%Y-%m-%d') }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
